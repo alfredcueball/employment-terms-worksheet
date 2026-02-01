@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employment Forms Vocabulary - Classroom Activity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Patrick+Hand&family=Fredericka+the+Great&family=Architects+Daughter&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Patrick Hand', cursive;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 50%, #1a472a 100%);
+        }
+
+        /* Main Menu Styles */
+        .main-menu {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .main-title {
+            font-family: 'Fredericka the Great', cursive;
+            font-size: 3.5rem;
+            color: #f5f5dc;
+            text-align: center;
+            margin-bottom: 10px;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.4);
+            letter-spacing: 2px;
+        }
+
+        .main-subtitle {
+            font-family: 'Architects Daughter', cursive;
+            font-size: 1.5rem;
+            color: #d4c896;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .menu-section {
+            background: rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 30px;
+            border: 3px dashed rgba(245,245,220,0.3);
+        }
+
+        .menu-section h2 {
+            font-family: 'Fredericka the Great', cursive;
+            font-size: 2rem;
+            color: #f5f5dc;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(245,245,220,0.3);
+            padding-bottom: 10px;
+        }
+
+        .menu-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .menu-btn {
+            background: linear-gradient(145deg, #3d6b4f 0%, #2a5038 100%);
+            border: 2px solid rgba(245,245,220,0.4);
+            border-radius: 12px;
+            padding: 16px 20px;
+            color: #f5f5dc;
+            font-size: 1.2rem;
+            font-family: 'Patrick Hand', cursive;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .menu-btn:hover {
+            transform: translateX(10px) scale(1.02);
+            background: linear-gradient(145deg, #4a7d5e 0%, #3d6b4f 100%);
+        }
+
+        .menu-btn.fill-blank {
+            background: linear-gradient(145deg, #5a4a3a 0%, #4a3a2a 100%);
+        }
+
+        .menu-btn.fill-blank:hover {
+            background: linear-gradient(145deg, #6a5a4a 0%, #5a4a3a 100%);
+        }
+
+        .menu-hint {
+            text-align: center;
+            color: #a8c4a8;
+            font-size: 1.1rem;
+            font-family: 'Architects Daughter', cursive;
+        }
+
+        /* Worksheet View Styles */
+        .worksheet-view {
+            display: none;
+            padding: 30px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .worksheet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .back-btn, .reset-btn {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(245,245,220,0.4);
+            border-radius: 12px;
+            padding: 12px 24px;
+            color: #f5f5dc;
+            font-size: 1.2rem;
+            font-family: 'Patrick Hand', cursive;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .reset-btn {
+            background: linear-gradient(145deg, #8b4513 0%, #6b3510 100%);
+        }
+
+        .reset-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .worksheet-title {
+            font-family: 'Fredericka the Great', cursive;
+            font-size: 2.5rem;
+            color: #f5f5dc;
+            text-align: center;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            height: 30px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            border: 2px solid rgba(245,245,220,0.3);
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #4ade80 0%, #22c55e 50%, #16a34a 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* Main Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Questions Panel */
+        .questions-panel {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            border: 4px solid #8b4513;
+        }
+
+        /* Matching Grid */
+        .matching-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 1100px) {
+            .matching-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .matching-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .match-card {
+            background: #fff;
+            border: 3px solid #dee2e6;
+            border-radius: 15px;
+            padding: 20px;
+            min-height: 140px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .match-card:hover:not(.completed) {
+            transform: scale(1.02);
+        }
+
+        .match-card.selected {
+            background: linear-gradient(145deg, #fff3cd 0%, #ffeeba 100%);
+            border-color: #ffc107;
+            box-shadow: 0 8px 25px rgba(255,193,7,0.4);
+            animation: pulse 1s infinite;
+        }
+
+        .match-card.completed {
+            background: linear-gradient(145deg, #d4edda 0%, #c3e6cb 100%);
+            border-color: #28a745;
+            cursor: default;
+        }
+
+        .match-card .definition {
+            font-family: 'Architects Daughter', cursive;
+            font-size: 1.1rem;
+            color: #495057;
+            line-height: 1.4;
+        }
+
+        .match-card .answer {
+            font-family: 'Caveat', cursive;
+            font-size: 1.8rem;
+            color: #28a745;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
+            min-height: 40px;
+        }
+
+        /* Fill in the Blank */
+        .fill-blank-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .fill-item {
+            background: #fff;
+            border: 2px solid #dee2e6;
+            border-radius: 12px;
+            padding: 18px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .fill-item:hover:not(.completed) {
+            transform: scale(1.01);
+        }
+
+        .fill-item.selected {
+            background: linear-gradient(145deg, #fff3cd 0%, #ffeeba 100%);
+            border: 3px solid #ffc107;
+            box-shadow: 0 6px 20px rgba(255,193,7,0.3);
+            animation: pulse 1s infinite;
+        }
+
+        .fill-item.completed {
+            background: linear-gradient(145deg, #d4edda 0%, #c3e6cb 100%);
+            border: 3px solid #28a745;
+            cursor: default;
+        }
+
+        .fill-item .number {
+            font-family: 'Architects Daughter', cursive;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #6c757d;
+            min-width: 35px;
+        }
+
+        .fill-item .text {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.3rem;
+            color: #212529;
+            line-height: 1.5;
+        }
+
+        .fill-item .blank {
+            display: inline-block;
+            min-width: 120px;
+            border-bottom: 3px solid #6c757d;
+            padding: 0 8px;
+            margin: 0 4px;
+        }
+
+        .fill-item .blank.filled {
+            border-bottom: none;
+            font-family: 'Caveat', cursive;
+            font-size: 1.6rem;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        /* Word Bank */
+        .word-bank {
+            background: linear-gradient(145deg, #2c1810 0%, #3d2317 100%);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            border: 4px solid #5a3825;
+            position: sticky;
+            top: 30px;
+            height: fit-content;
+        }
+
+        .word-bank h3 {
+            font-family: 'Fredericka the Great', cursive;
+            font-size: 1.8rem;
+            color: #f5f5dc;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(245,245,220,0.3);
+            padding-bottom: 15px;
+        }
+
+        .word-bank-hint {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-family: 'Architects Daughter', cursive;
+        }
+
+        .word-bank-hint.active {
+            color: #ffc107;
+        }
+
+        .word-bank-hint.inactive {
+            color: #a8c4a8;
+        }
+
+        .word-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .word-btn {
+            background: linear-gradient(145deg, #555 0%, #444 100%);
+            border: 2px solid rgba(245,245,220,0.3);
+            border-radius: 12px;
+            padding: 16px 20px;
+            color: #f5f5dc;
+            font-size: 1.4rem;
+            font-family: 'Caveat', cursive;
+            font-weight: bold;
+            cursor: not-allowed;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            opacity: 0.6;
+        }
+
+        .word-btn.active {
+            background: linear-gradient(145deg, #4a7d5e 0%, #3d6b4f 100%);
+            cursor: pointer;
+            opacity: 1;
+        }
+
+        .word-btn.active:hover {
+            transform: scale(1.05);
+            background: linear-gradient(145deg, #5a8d6e 0%, #4a7d5e 100%);
+        }
+
+        .word-btn.wrong {
+            background: linear-gradient(145deg, #dc3545 0%, #c82333 100%);
+            animation: shake 0.5s ease;
+        }
+
+        .word-btn.used {
+            display: none;
+        }
+
+        .completion-message {
+            text-align: center;
+            padding: 40px 20px;
+            color: #ffd700;
+        }
+
+        .completion-message .icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+
+        .completion-message p {
+            font-family: 'Fredericka the Great', cursive;
+            font-size: 1.5rem;
+        }
+
+        /* Instructions Footer */
+        .instructions {
+            margin-top: 30px;
+            text-align: center;
+            color: #a8c4a8;
+            font-size: 1.1rem;
+            font-family: 'Architects Daughter', cursive;
+            padding: 20px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 15px;
+        }
+
+        /* Celebration Overlay */
+        .celebration {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .celebration.show {
+            display: flex;
+        }
+
+        .celebration-content {
+            background: linear-gradient(145deg, #ffd700 0%, #ffb300 100%);
+            padding: 60px 80px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            animation: bounceIn 0.5s ease;
+        }
+
+        .celebration-content .icon {
+            font-size: 6rem;
+            margin-bottom: 20px;
+        }
+
+        .celebration-content h2 {
+            font-family: 'Fredericka the Great', cursive;
+            font-size: 3rem;
+            color: #1a472a;
+            margin: 0;
+        }
+
+        .celebration-content p {
+            font-size: 1.5rem;
+            color: #2d5a3d;
+            margin-top: 15px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-15px); }
+            40% { transform: translateX(15px); }
+            60% { transform: translateX(-10px); }
+            80% { transform: translateX(10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Menu -->
+    <div id="mainMenu" class="main-menu">
+        <h1 class="main-title">📋 Employment Forms Vocabulary</h1>
+        <p class="main-subtitle">Interactive Classroom Activity</p>
+
+        <div class="menu-grid">
+            <div class="menu-section">
+                <h2>✏️ Matching Worksheets</h2>
+                <div class="menu-buttons" id="matchingButtons"></div>
+            </div>
+            <div class="menu-section">
+                <h2>📝 Fill In The Blank</h2>
+                <div class="menu-buttons" id="fillBlankButtons"></div>
+            </div>
+        </div>
+
+        <div class="menu-hint">
+            <p>💡 Click a worksheet to begin • Select a question • Choose the correct answer</p>
+        </div>
+    </div>
+
+    <!-- Worksheet View -->
+    <div id="worksheetView" class="worksheet-view">
+        <div class="worksheet-header">
+            <button class="back-btn" onclick="goBack()">← Back to Menu</button>
+            <h1 class="worksheet-title" id="worksheetTitle"></h1>
+            <button class="reset-btn" onclick="resetWorksheet()">🔄 Reset</button>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="content-grid">
+            <div class="questions-panel" id="questionsPanel"></div>
+            <div class="word-bank">
+                <h3>📚 Word Bank</h3>
+                <p class="word-bank-hint inactive" id="wordBankHint">👈 Select a question first</p>
+                <div class="word-buttons" id="wordButtons"></div>
+                <div class="completion-message" id="completionMessage" style="display: none;">
+                    <div class="icon">🏆</div>
+                    <p>All words used!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <p>🎯 <strong>Instructions:</strong> Click on a question to select it (highlighted in yellow) → 
+            Then click the correct word from the Word Bank → 
+            Wrong answers flash red, correct answers fill in green!</p>
+        </div>
+    </div>
+
+    <!-- Celebration Overlay -->
+    <div class="celebration" id="celebration">
+        <div class="celebration-content">
+            <div class="icon">🎉</div>
+            <h2>Worksheet Complete!</h2>
+            <p>Great job, class!</p>
+        </div>
+    </div>
+
+    <script>
+        // Worksheet Data
+        const matchingWorksheets = [
+            {
+                id: 1,
+                title: "Words Found on Employment Forms 1",
+                words: ["Name", "Birthday", "Salary", "Age", "Company", "Graduate"],
+                definitions: [
+                    { def: "The money earned from a job", answer: "Salary" },
+                    { def: "How old you are", answer: "Age" },
+                    { def: "The day you were born", answer: "Birthday" },
+                    { def: "A business", answer: "Company" },
+                    { def: "A word or set of words which a person goes by", answer: "Name" },
+                    { def: "Someone who has completed their schooling", answer: "Graduate" }
+                ]
+            },
+            {
+                id: 2,
+                title: "Words Found on Employment Forms 2",
+                words: ["address", "position", "supervisor", "married", "female", "application"],
+                definitions: [
+                    { def: "Two people united in ceremony", answer: "married" },
+                    { def: "The number and street where you live", answer: "address" },
+                    { def: "A person who supervises others", answer: "supervisor" },
+                    { def: "A woman or girl", answer: "female" },
+                    { def: "A request to find employment", answer: "application" },
+                    { def: "Your job at work", answer: "position" }
+                ]
+            },
+            {
+                id: 3,
+                title: "Words Found on Employment Forms 3",
+                words: ["City", "Street", "Citizenship", "State", "Single", "Physical"],
+                definitions: [
+                    { def: "The roads in a town or city", answer: "Street" },
+                    { def: "An annual exam by your doctor", answer: "Physical" },
+                    { def: "One who is not married", answer: "Single" },
+                    { def: "There are 50 of these in the USA", answer: "State" },
+                    { def: "A large town", answer: "City" },
+                    { def: "Being a full member of a country", answer: "Citizenship" }
+                ]
+            },
+            {
+                id: 4,
+                title: "Words Found on Employment Forms 4",
+                words: ["ZIP", "Height", "Medical", "Phone", "Weight", "Occupation"],
+                definitions: [
+                    { def: "The postal code where you live", answer: "ZIP" },
+                    { def: "A device to receive calls", answer: "Phone" },
+                    { def: "The work a person does to earn money", answer: "Occupation" },
+                    { def: "How much you weigh", answer: "Weight" },
+                    { def: "How tall you are", answer: "Height" },
+                    { def: "Treatment of illness or injury", answer: "Medical" }
+                ]
+            },
+            {
+                id: 5,
+                title: "Words Found on Employment Forms 5",
+                words: ["Date", "Health", "Organization", "Year", "Information", "References"],
+                definitions: [
+                    { def: "A group of people acting for a purpose", answer: "Organization" },
+                    { def: "365 days", answer: "Year" },
+                    { def: "Facts provided", answer: "Information" },
+                    { def: "People who can answer questions about you", answer: "References" },
+                    { def: "The day of the month or year", answer: "Date" },
+                    { def: "A person's mental or physical condition", answer: "Health" }
+                ]
+            },
+            {
+                id: 6,
+                title: "Words Found on Employment Forms 6",
+                words: ["Print", "Education", "Residence", "Blank", "Experience", "Apprentice"],
+                definitions: [
+                    { def: "A space not filled in", answer: "Blank" },
+                    { def: "The schooling one's had", answer: "Education" },
+                    { def: "Skill or knowledge one has", answer: "Experience" },
+                    { def: "Where a person lives", answer: "Residence" },
+                    { def: "A person who is learning a trade", answer: "Apprentice" },
+                    { def: "Not using cursive to write", answer: "Print" }
+                ]
+            },
+            {
+                id: 7,
+                title: "Words Found on Employment Forms 7",
+                words: ["Job", "Signature", "Arrested", "Title", "Employee", "Deductions"],
+                definitions: [
+                    { def: "The name that describes someone's job", answer: "Title" },
+                    { def: "The signing of your name", answer: "Signature" },
+                    { def: "Someone who works for a company", answer: "Employee" },
+                    { def: "A paid position", answer: "Job" },
+                    { def: "Money that is subtracted", answer: "Deductions" },
+                    { def: "Someone taken into custody by the police", answer: "Arrested" }
+                ]
+            },
+            {
+                id: 8,
+                title: "Words Found on Employment Forms 8",
+                words: ["Male", "Employer", "Disability", "Sign", "Wage", "Interview"],
+                definitions: [
+                    { def: "A business who employs people", answer: "Employer" },
+                    { def: "A physical or mental impairment", answer: "Disability" },
+                    { def: "The money earned for doing a job", answer: "Wage" },
+                    { def: "A meeting to get to know someone better", answer: "Interview" },
+                    { def: "A man or boy", answer: "Male" },
+                    { def: "To write one's name", answer: "Sign" }
+                ]
+            }
+        ];
+
+        const fillInBlankWorksheets = [
+            {
+                id: 9,
+                title: "Fill In The Blank 1",
+                wordBank: ["Health", "Age", "Wage", "Application", "Position", "References", "Arrested", "Address", "Print", "Male"],
+                questions: [
+                    { text: "Bill picked up an _____ at Walmart, so he could apply for a job.", answer: "Application" },
+                    { text: "Kim wrote a bad check to the store and was _____ by a police officer.", answer: "Arrested" },
+                    { text: "Meg's new _____ at work is head cashier.", answer: "Position" },
+                    { text: "Ben hasn't been sick in months. He is in good _____.", answer: "Health" },
+                    { text: "Karlie's _____ is 4734 Mt. Vernon Drive.", answer: "Address" },
+                    { text: "The application stated to _____ when filling out the form.", answer: "Print" },
+                    { text: "Chris is going to use his uncle and neighbor as his _____ on his job application.", answer: "References" },
+                    { text: "Vernon's hourly _____ is $11.50.", answer: "Wage" },
+                    { text: "Your _____ is how old you are", answer: "Age" },
+                    { text: "Tom is a boy, he will mark \"_____\" on his application.", answer: "Male" }
+                ]
+            },
+            {
+                id: 10,
+                title: "Fill In The Blank 2",
+                wordBank: ["Blank", "Date", "State", "Single", "Experience", "Physical", "Occupation", "Phone", "Interview"],
+                questions: [
+                    { text: "Las Vegas is in the _____ of Nevada.", answer: "State" },
+                    { text: "Dan is not married. He would be considered _____.", answer: "Single" },
+                    { text: "Dawn used to work at Walmart. She has retail _____.", answer: "Experience" },
+                    { text: "Russ had to have a _____ done by his doctor before he could start his new job.", answer: "Physical" },
+                    { text: "Paige gave her employer her new _____ number in case they needed to contact her.", answer: "Phone" },
+                    { text: "Dan is waiting for Target to call to schedule a job _____.", answer: "Interview" },
+                    { text: "The application said to leave an area _____, so I shouldn't write in that area.", answer: "Blank" },
+                    { text: "The _____ is where I would write what day today is on the calendar.", answer: "Date" },
+                    { text: "Tom is a mechanic. That is his _____.", answer: "Occupation" }
+                ]
+            },
+            {
+                id: 11,
+                title: "Fill In The Blank 3",
+                wordBank: ["Apprentice", "Year", "Medical", "Supervisor", "Female", "Company", "City", "Job", "ZIP", "Height"],
+                questions: [
+                    { text: "Sam's _____ is 6 feet, 2 inches tall.", answer: "Height" },
+                    { text: "Derek's _____, wrote him up for showing up to work late.", answer: "Supervisor" },
+                    { text: "The acronym _____ stand for Zone Improvement Plan.", answer: "ZIP" },
+                    { text: "The man cut his arm. He was having a _____ emergency.", answer: "Medical" },
+                    { text: "Karlie is a girl. She will mark \"_____\" on her application.", answer: "Female" },
+                    { text: "Bob's new _____ will work with him today to learn skills he needs for the job.", answer: "Apprentice" },
+                    { text: "Walmart is the largest _____ in the USA.", answer: "Company" },
+                    { text: "Adam's _____ at Target is to bring in the carts.", answer: "Job" },
+                    { text: "Candy lives in the _____ of Bakersfield", answer: "City" },
+                    { text: "The applicant was born in the _____ 2002.", answer: "Year" }
+                ]
+            },
+            {
+                id: 12,
+                title: "Fill In The Blank 4",
+                wordBank: ["Citizenship", "Salary", "Name", "Signature", "Employer", "Birthday", "Sign", "Weight", "Married", "Residence"],
+                questions: [
+                    { text: "Your _____ is the day you were born.", answer: "Birthday" },
+                    { text: "Andrew works at Starbucks. That is his _____.", answer: "Employer" },
+                    { text: "Signing your name in cursive is your _____.", answer: "Signature" },
+                    { text: "Erica has _____ in both America and Mexico.", answer: "Citizenship" },
+                    { text: "Frank has been watching what he eats. His new _____ is 195 pounds.", answer: "Weight" },
+                    { text: "Beth's _____ is $1,245.00 a month.", answer: "Salary" },
+                    { text: "Your signature should include your first and last _____.", answer: "Name" },
+                    { text: "The White House is the president's official _____.", answer: "Residence" },
+                    { text: "Gary and Penny have been happily _____ for over 20 years.", answer: "Married" },
+                    { text: "You must _____ your employers handbook stating you understand the safety rules.", answer: "Sign" }
+                ]
+            }
+        ];
+
+        // App State
+        let currentWorksheet = null;
+        let selectedQuestion = null;
+        let completedItems = {};
+        let usedWords = [];
+
+        // Initialize menu
+        function initMenu() {
+            const matchingBtns = document.getElementById('matchingButtons');
+            const fillBlankBtns = document.getElementById('fillBlankButtons');
+
+            matchingWorksheets.forEach(ws => {
+                const btn = document.createElement('button');
+                btn.className = 'menu-btn';
+                btn.textContent = ws.title;
+                btn.onclick = () => loadWorksheet(ws, 'matching');
+                matchingBtns.appendChild(btn);
+            });
+
+            fillInBlankWorksheets.forEach(ws => {
+                const btn = document.createElement('button');
+                btn.className = 'menu-btn fill-blank';
+                btn.textContent = ws.title;
+                btn.onclick = () => loadWorksheet(ws, 'fillblank');
+                fillBlankBtns.appendChild(btn);
+            });
+        }
+
+        // Load worksheet
+        function loadWorksheet(worksheet, type) {
+            currentWorksheet = { ...worksheet, type };
+            selectedQuestion = null;
+            completedItems = {};
+            usedWords = [];
+
+            document.getElementById('mainMenu').style.display = 'none';
+            document.getElementById('worksheetView').style.display = 'block';
+            document.getElementById('worksheetTitle').textContent = worksheet.title;
+
+            renderQuestions();
+            renderWordBank();
+            updateProgress();
+        }
+
+        // Go back to menu
+        function goBack() {
+            currentWorksheet = null;
+            selectedQuestion = null;
+            document.getElementById('mainMenu').style.display = 'block';
+            document.getElementById('worksheetView').style.display = 'none';
+        }
+
+        // Reset worksheet
+        function resetWorksheet() {
+            selectedQuestion = null;
+            completedItems = {};
+            usedWords = [];
+            renderQuestions();
+            renderWordBank();
+            updateProgress();
+        }
+
+        // Render questions
+        function renderQuestions() {
+            const panel = document.getElementById('questionsPanel');
+            panel.innerHTML = '';
+
+            if (currentWorksheet.type === 'matching') {
+                const grid = document.createElement('div');
+                grid.className = 'matching-grid';
+
+                currentWorksheet.definitions.forEach((item, idx) => {
+                    const card = document.createElement('div');
+                    card.className = 'match-card';
+                    card.dataset.index = idx;
+
+                    if (completedItems[idx]) {
+                        card.classList.add('completed');
+                    } else if (selectedQuestion === idx) {
+                        card.classList.add('selected');
+                    }
+
+                    card.innerHTML = `
+                        <div class="definition">${item.def}</div>
+                        <div class="answer">${completedItems[idx] || ''}</div>
+                    `;
+
+                    if (!completedItems[idx]) {
+                        card.onclick = () => selectQuestion(idx);
+                    }
+
+                    grid.appendChild(card);
+                });
+
+                panel.appendChild(grid);
+            } else {
+                const list = document.createElement('div');
+                list.className = 'fill-blank-list';
+
+                currentWorksheet.questions.forEach((item, idx) => {
+                    const div = document.createElement('div');
+                    div.className = 'fill-item';
+                    div.dataset.index = idx;
+
+                    if (completedItems[idx]) {
+                        div.classList.add('completed');
+                    } else if (selectedQuestion === idx) {
+                        div.classList.add('selected');
+                    }
+
+                    const parts = item.text.split('_____');
+                    const blankClass = completedItems[idx] ? 'blank filled' : 'blank';
+                    const blankContent = completedItems[idx] || '';
+
+                    div.innerHTML = `
+                        <span class="number">${idx + 1}.</span>
+                        <span class="text">${parts[0]}<span class="${blankClass}">${blankContent}</span>${parts[1] || ''}</span>
+                    `;
+
+                    if (!completedItems[idx]) {
+                        div.onclick = () => selectQuestion(idx);
+                    }
+
+                    list.appendChild(div);
+                });
+
+                panel.appendChild(list);
+            }
+        }
+
+        // Select question
+        function selectQuestion(idx) {
+            selectedQuestion = idx;
+            renderQuestions();
+            updateWordBankState();
+        }
+
+        // Render word bank
+        function renderWordBank() {
+            const container = document.getElementById('wordButtons');
+            const completionMsg = document.getElementById('completionMessage');
+            container.innerHTML = '';
+
+            const words = currentWorksheet.words || currentWorksheet.wordBank;
+            const availableWords = words.filter(w => !usedWords.includes(w.toLowerCase()));
+
+            if (availableWords.length === 0) {
+                completionMsg.style.display = 'block';
+            } else {
+                completionMsg.style.display = 'none';
+            }
+
+            words.forEach(word => {
+                const btn = document.createElement('button');
+                btn.className = 'word-btn';
+                btn.textContent = word;
+                btn.dataset.word = word;
+
+                if (usedWords.includes(word.toLowerCase())) {
+                    btn.classList.add('used');
+                } else if (selectedQuestion !== null) {
+                    btn.classList.add('active');
+                    btn.onclick = () => checkAnswer(word);
+                }
+
+                container.appendChild(btn);
+            });
+
+            updateWordBankState();
+        }
+
+        // Update word bank state
+        function updateWordBankState() {
+            const hint = document.getElementById('wordBankHint');
+            const buttons = document.querySelectorAll('.word-btn:not(.used)');
+
+            if (selectedQuestion !== null) {
+                hint.textContent = '👆 Click the correct answer!';
+                hint.className = 'word-bank-hint active';
+                buttons.forEach(btn => {
+                    btn.classList.add('active');
+                    btn.onclick = () => checkAnswer(btn.dataset.word);
+                });
+            } else {
+                hint.textContent = '👈 Select a question first';
+                hint.className = 'word-bank-hint inactive';
+                buttons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.onclick = null;
+                });
+            }
+        }
+
+        // Check answer
+        function checkAnswer(word) {
+            if (selectedQuestion === null) return;
+
+            const items = currentWorksheet.definitions || currentWorksheet.questions;
+            const correctAnswer = items[selectedQuestion].answer;
+
+            if (word.toLowerCase() === correctAnswer.toLowerCase()) {
+                // Correct!
+                completedItems[selectedQuestion] = word;
+                usedWords.push(word.toLowerCase());
+                selectedQuestion = null;
+
+                renderQuestions();
+                renderWordBank();
+                updateProgress();
+
+                // Check for completion
+                const totalQuestions = items.length;
+                if (Object.keys(completedItems).length === totalQuestions) {
+                    showCelebration();
+                }
+            } else {
+                // Wrong - show shake animation
+                const btn = document.querySelector(`.word-btn[data-word="${word}"]`);
+                btn.classList.add('wrong');
+                setTimeout(() => {
+                    btn.classList.remove('wrong');
+                }, 600);
+            }
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const items = currentWorksheet.definitions || currentWorksheet.questions;
+            const total = items.length;
+            const completed = Object.keys(completedItems).length;
+            const percent = (completed / total) * 100;
+
+            const bar = document.getElementById('progressBar');
+            bar.style.width = percent + '%';
+            bar.textContent = completed > 0 ? `${completed} / ${total}` : '';
+        }
+
+        // Show celebration
+        function showCelebration() {
+            const celebration = document.getElementById('celebration');
+            celebration.classList.add('show');
+            setTimeout(() => {
+                celebration.classList.remove('show');
+            }, 3000);
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', initMenu);
+    </script>
+</body>
+</html>
